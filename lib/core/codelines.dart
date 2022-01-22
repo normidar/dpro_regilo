@@ -1,4 +1,5 @@
 import 'package:dpro/dpro.dart';
+import 'package:dpro_regilo/core/gray_catcher.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -10,33 +11,30 @@ class CodeLines extends StatefulWidget with DCodeLines {
 
   List<Widget> children = [];
   @override
-  // TODO: implement objects
-  List<DObject> get objects => throw UnimplementedError();
+  List<DObject> get objects {
+    List<DObject> result = [];
+    for (Object child in children) {
+      if (child is DObject) {
+        result.add(child);
+      }
+    }
+    return result;
+  }
 }
 
 class _W extends State<CodeLines> {
   @override
   Widget build(BuildContext context) {
     final _children = List<Widget>.from(widget.children)
-      ..add(DragTarget<Widget>(
-        builder: (
-          BuildContext context,
-          List<dynamic> accepted,
-          List<dynamic> rejected,
-        ) {
-          return Container(
-            height: 40.0,
-            width: 140.0,
-            color: Colors.grey,
-          );
-        },
-        onAccept: (Widget data) {
+      ..add(
+        GrayCatcher(onAccept: (w) {
           setState(() {
-            widget.children.add(data);
+            widget.children.add(w);
           });
-        },
-      ));
+        }),
+      );
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: _children,
     );
   }

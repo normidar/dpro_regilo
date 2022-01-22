@@ -1,0 +1,1 @@
+class UnitUnexistError extends Error {}
