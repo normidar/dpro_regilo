@@ -4,9 +4,11 @@ typedef DragTargetAccept<T> = void Function(T data);
 
 class GrayCatcher extends StatelessWidget {
   final DragTargetAccept<Widget> onAccept;
+  final double width;
   const GrayCatcher({
     Key? key,
     required this.onAccept,
+    this.width = 140,
   }) : super(key: key);
 
   @override
@@ -19,7 +21,7 @@ class GrayCatcher extends StatelessWidget {
       ) {
         return Container(
           height: 40.0,
-          width: 140.0,
+          width: width,
           color: Colors.grey,
         );
       },

@@ -1,4 +1,3 @@
-import 'package:dpro/dpro.dart';
 import 'package:dpro_regilo/core/base_items/base_item_list.dart';
 import 'package:dpro_regilo/core/codelines.dart';
 import 'package:dpro_regilo/output/output_page.dart';
@@ -31,13 +30,9 @@ class MainPage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              TranEngine.tip = LanguageTips.python;
-              String code = TranEngine.tran(
-                codes: _codeLines,
-              );
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return OutputPage(
-                  code: code,
+                  codeLines: _codeLines,
                 );
               }));
             },

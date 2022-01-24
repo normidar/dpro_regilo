@@ -1,5 +1,7 @@
+import 'package:dpro_regilo/core/base_items/branch/w_if.dart';
+import 'package:dpro_regilo/core/base_items/value/w_bool.dart';
+import 'package:dpro_regilo/core/base_items/value/w_string.dart';
 import 'package:dpro_regilo/core/base_items/w_print.dart';
-import 'package:dpro_regilo/core/base_items/w_string.dart';
 import 'package:flutter/material.dart';
 
 class BaseItemList extends StatelessWidget {
@@ -14,6 +16,14 @@ class BaseItemList extends StatelessWidget {
             height: 10,
           ),
           WString(),
+          const SizedBox(
+            height: 10,
+          ),
+          WIf(),
+          const SizedBox(
+            height: 10,
+          ),
+          WBool(),
         ],
       ),
     );
