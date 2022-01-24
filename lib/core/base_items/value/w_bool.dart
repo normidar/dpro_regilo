@@ -2,11 +2,13 @@ import 'package:dpro/dpro.dart';
 import 'package:flutter/material.dart';
 
 class WBool extends StatefulWidget with DBool {
+  WBool({Key? key, this.value = true}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _WString();
 
   @override
-  bool value = true;
+  bool value;
 }
 
 class _WString extends State<WBool> {
@@ -44,7 +46,12 @@ class _WString extends State<WBool> {
     );
     return Draggable<Widget>(
       // Data is the value this Draggable stores.
-      data: widget,
+      data: WBool(
+        value: widget.value,
+      ),
+      onDragStarted: () {
+        setState(() {});
+      },
       feedback: Material(
         child: ConstrainedBox(
           constraints:
