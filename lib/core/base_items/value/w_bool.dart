@@ -1,4 +1,6 @@
 import 'package:dpro/dpro.dart';
+import 'package:dpro_regilo/core/base_items/value/value_container_wrap.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 
 class WBool extends StatefulWidget with DBool {
@@ -14,22 +16,18 @@ class WBool extends StatefulWidget with DBool {
 class _WString extends State<WBool> {
   @override
   Widget build(BuildContext context) {
-    Widget style = Container(
-      alignment: Alignment.center,
-      height: 51,
-      width: 100,
-      color: Colors.green,
+    Widget style = ValueContainerWrap(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            widget.value ? "真" : "偽",
+            widget.value ? "true" : "false",
             style: const TextStyle(
               fontSize: 16,
               color: Colors.black,
               decoration: TextDecoration.none,
             ),
-          ),
+          ).tr(),
           IconButton(
             icon: const Icon(
               Icons.switch_left,

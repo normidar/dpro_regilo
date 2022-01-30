@@ -1,6 +1,7 @@
 import 'package:dpro/dpro.dart';
 import 'package:dpro_regilo/core/codelines.dart';
 import 'package:dpro_regilo/core/gray_catcher.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class WIf extends StatefulWidget {
@@ -28,9 +29,9 @@ Widget styleIf = Container(
   height: 51,
   width: 100,
   color: Colors.green,
-  child: const Text(
-    "もし",
-    style: TextStyle(
+  child: Text(
+    "if".tr(),
+    style: const TextStyle(
       fontSize: 21,
       color: Colors.black,
       decoration: TextDecoration.none,
