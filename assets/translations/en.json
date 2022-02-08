@@ -1,0 +1,8 @@
+{
+    "if":"if",
+    "true":"true",
+    "false":"true",
+    "string":"string",
+    "value":"value",
+    "int":"int"
+}
