@@ -7,13 +7,13 @@ class WBool extends StatefulWidget with DBool {
   WBool({Key? key, this.value = true}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _WString();
+  State<StatefulWidget> createState() => _WBool();
 
   @override
   bool value;
 }
 
-class _WString extends State<WBool> {
+class _WBool extends State<WBool> {
   @override
   Widget build(BuildContext context) {
     Widget style = ValueContainerWrap(

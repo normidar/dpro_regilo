@@ -1,7 +1,7 @@
 {
     "if":"if",
     "true":"true",
-    "false":"true",
+    "false":"false",
     "string":"string",
     "value":"value",
     "int":"int"

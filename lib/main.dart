@@ -1,3 +1,4 @@
+import 'package:dpro_regilo/core/base_items/item_list/branch_item_list.dart';
 import 'package:dpro_regilo/core/base_items/item_list/value_item_list.dart';
 import 'package:dpro_regilo/core/codelines.dart';
 import 'package:dpro_regilo/output/output_page.dart';
@@ -39,13 +40,66 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MainPage extends StatelessWidget {
-  final CodeLines _codeLines = CodeLines();
+class MainPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _MainPage();
+}
+
+class _MainPage extends State<MainPage> {
+  CodeLines _codeLines = CodeLines();
+
+  ChoosingType choosingType = ChoosingType.value;
+
+  Widget getChoosingWidgetList() {
+    switch (choosingType) {
+      case ChoosingType.value:
+        return ValueItemList();
+      case ChoosingType.branch:
+        return BranchItemList();
+      default:
+        return ValueItemList();
+    }
+  }
+
+  int currentIndex = 0;
+  Future onButtomTap(int index) async {
+    currentIndex = index;
+    switch (index) {
+      case 0:
+        setState(() {
+          choosingType = ChoosingType.value;
+        });
+        break;
+      case 1:
+        setState(() {
+          choosingType = ChoosingType.branch;
+        });
+        break;
+      case 2:
+        setState(() {
+          choosingType = ChoosingType.tools;
+        });
+        break;
+      default:
+        setState(() {
+          choosingType = ChoosingType.settings;
+        });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("dproサンプル"),
+        title: const Text("Dpro-Regilo(Alpha)"),
+        leading: IconButton(
+          icon: const Icon(Icons.refresh),
+          onPressed: () {
+            setState(() {
+              _codeLines = CodeLines();
+            });
+          },
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -60,44 +114,35 @@ class MainPage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-          ]),
+        currentIndex: currentIndex,
+        onTap: onButtomTap,
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.paid_outlined),
+            label: 'value'.tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.account_tree_outlined),
+            label: 'branch'.tr(),
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.home_repair_service_outlined),
+            label: 'tools',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.settings_outlined),
+            label: 'settings',
+          ),
+        ],
+      ),
       body: Container(
         color: Colors.green,
         child: Flex(
           direction: Axis.horizontal,
           children: [
             Expanded(
-              flex: 3,
+              flex: 2,
               child: ConstrainedBox(
                 constraints: const BoxConstraints.expand(),
                 child: Container(
@@ -105,7 +150,10 @@ class MainPage extends StatelessWidget {
                   color: Colors.green[100],
                   child: Padding(
                     padding: const EdgeInsets.all(10),
-                    child: _codeLines,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: _codeLines,
+                    ),
                   ),
                 ),
               ),
@@ -118,7 +166,7 @@ class MainPage extends StatelessWidget {
                   color: Colors.blue[200],
                   child: Padding(
                     padding: const EdgeInsets.all(10),
-                    child: ValueItemList(),
+                    child: getChoosingWidgetList(),
                   ),
                 ),
               ),
@@ -129,3 +177,5 @@ class MainPage extends StatelessWidget {
     );
   }
 }
+
+enum ChoosingType { value, branch, tools, settings }

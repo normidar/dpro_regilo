@@ -1,13 +1,12 @@
 import 'package:dpro/dpro.dart';
 import 'package:dpro_regilo/core/base_items/value/value_container_wrap.dart';
-import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 
-class WString extends StatefulWidget with DString {
+class WInt extends StatefulWidget with DInt {
   @override
-  String value = "string".tr();
+  int value = 1;
 
-  WString({Key? key, String? value}) : super(key: key) {
+  WInt({Key? key, int? value}) : super(key: key) {
     if (value != null) this.value = value;
   }
 
@@ -15,7 +14,7 @@ class WString extends StatefulWidget with DString {
   State<StatefulWidget> createState() => _WString();
 }
 
-class _WString extends State<WString> {
+class _WString extends State<WInt> {
   bool _isEditing = false;
   @override
   Widget build(BuildContext context) {
@@ -33,17 +32,17 @@ class _WString extends State<WString> {
                     onSubmitted: (str) {
                       setState(() {
                         _isEditing = false;
-                        widget.value = str;
+                        widget.value = int.parse(str);
                       });
                     },
                     decoration: InputDecoration(
                       border: const UnderlineInputBorder(),
-                      hintText: widget.value,
+                      hintText: widget.value.toString(),
                     ),
                   ),
                 )
               : Text(
-                  widget.value,
+                  widget.value.toString(),
                   style: const TextStyle(
                     fontSize: 16,
                     color: Colors.black,
@@ -66,7 +65,7 @@ class _WString extends State<WString> {
     );
     return Draggable<Widget>(
       // Data is the value this Draggable stores.
-      data: WString(
+      data: WInt(
         value: widget.value,
       ),
       feedback: Material(
