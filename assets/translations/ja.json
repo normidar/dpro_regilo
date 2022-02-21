@@ -1,5 +1,7 @@
 {
     "if":"もし",
+    "define_assign":"定義",
+    "variable":"変数",
     "true":"真",
     "false":"偽",
     "string":"文字列",

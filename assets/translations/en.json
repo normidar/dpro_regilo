@@ -1,5 +1,7 @@
 {
     "if":"if",
+    "define_assign":"def",
+    "variable":"variable",
     "true":"true",
     "false":"false",
     "string":"string",

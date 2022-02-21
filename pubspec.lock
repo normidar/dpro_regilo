@@ -63,7 +63,7 @@ packages:
       name: dpro
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.4"
+    version: "0.2.6"
   easy_localization:
     dependency: "direct main"
     description:
