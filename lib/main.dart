@@ -54,6 +54,8 @@ class _MainPage extends State<MainPage> {
     switch (choosingType) {
       case ChoosingType.value:
         return ValueItemList();
+      case ChoosingType.calculate:
+        return ValueItemList();
       case ChoosingType.branch:
         return BranchItemList();
       default:
@@ -72,10 +74,15 @@ class _MainPage extends State<MainPage> {
         break;
       case 1:
         setState(() {
-          choosingType = ChoosingType.branch;
+          choosingType = ChoosingType.calculate;
         });
         break;
       case 2:
+        setState(() {
+          choosingType = ChoosingType.branch;
+        });
+        break;
+      case 3:
         setState(() {
           choosingType = ChoosingType.tools;
         });
@@ -121,6 +128,10 @@ class _MainPage extends State<MainPage> {
           BottomNavigationBarItem(
             icon: const Icon(Icons.paid_outlined),
             label: 'value'.tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.calculate),
+            label: 'calculate'.tr(),
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.account_tree_outlined),
@@ -178,4 +189,4 @@ class _MainPage extends State<MainPage> {
   }
 }
 
-enum ChoosingType { value, branch, tools, settings }
+enum ChoosingType { value, branch, calculate, tools, settings }
